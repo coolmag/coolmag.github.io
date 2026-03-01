@@ -96,6 +96,7 @@
 </head>
 <body>
     <video autoplay muted loop playsinline id="video-background">
+        <!-- Ссылка чистая, без < > -->
         <source src="https://coolmag.github.io/avatar.mp4" type="video/mp4">
     </video>
     
@@ -103,12 +104,14 @@
         <div class="container">
             <h1>Aurora Vibe</h1>
             <p>Первая нейро-радиостанция в Telegram. Слушай треки, управляй эфиром и погружайся в кибер-вайб.</p>
+            <!-- Ссылка чистая, без < > и \ -->
             <a href="https://t.me/coolmagDJ" class="cta-button" target="_blank" rel="noopener noreferrer">
                 🚀 Открыть в Telegram
             </a>
         </div>
         
-        <iframe class="web-player" src="https://newbot99-production.up.railway.app/" frameborder="0" allowtransparency="true" allow="autoplay; encrypted-media"></iframe>
+        <!-- Добавлено ?v=2 для сброса кэша! -->
+        <iframe class="web-player" src="https://newbot99-production.up.railway.app/?v=2" frameborder="0" allowtransparency="true" allow="autoplay; encrypted-media"></iframe>
     </div>
 </body>
 </html>
