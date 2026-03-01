@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aurora Vibe Free Music - Ваш портал в мир бесплатной музыки</title>
     <meta name="description" content="Присоединяйтесь к Telegram-каналу Aurora Vibe Free Music. Наслаждайтесь бесплатной музыкой, радио, поиском треков и общением с интерактивным ботом.">
-    <meta name="keywords" content="бесплатная музыка, скачать музыку, телеграм музыка, радио, бот для музыки, Aurora Vibe">
+    <meta name="keywords" content="бесплатная музыка, скачать музыку, музыкальный бот телеграм, слушать музыку онлайн, радио в телеграм, поиск треков по названию, Aurora Vibe музыкальный бот, лоу-фай хип-хоп слушать, синтвейв и фонк музыка, музыка без авторских прав, новые треки 2026, электронная музыка транс, интерактивное радио бот, музыка для стримов, плейлист музыки в телеграм">
     <meta name="google-site-verification" content="YSHtzMY44uBVIOIRXkdYQk_DymtXT127H3hbjZRwtLM" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,18 +16,14 @@
             background-color: #121212;
             color: #ffffff;
             margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            padding: 40px 20px; /* Added padding */
             text-align: center;
-            overflow: hidden;
+            overflow-x: hidden; /* Allow vertical scroll, hide horizontal */
             position: relative;
         }
         body::before {
             content: '';
-            position: absolute;
+            position: fixed; /* Make background fixed */
             top: 0;
             left: 0;
             right: 0;
@@ -35,7 +31,7 @@
             background: linear-gradient(135deg, rgba(29, 22, 53, 0.8), rgba(83, 33, 112, 0.8), rgba(43, 144, 145, 0.8));
             animation: gradient-animation 15s ease infinite;
             background-size: 400% 400%;
-            z-index: 1;
+            z-index: -1; /* Put background behind content */
         }
         @keyframes gradient-animation {
             0% { background-position: 0% 50%; }
@@ -45,7 +41,7 @@
         .container {
             position: relative;
             z-index: 2;
-            padding: 20px;
+            padding: 40px 20px;
             background: rgba(0, 0, 0, 0.6);
             border-radius: 15px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
@@ -53,7 +49,7 @@
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.18);
             max-width: 600px;
-            margin: 20px;
+            margin: 0 auto 40px auto; /* Center and add bottom margin */
         }
         h1 {
             font-size: 2.5em;
@@ -83,6 +79,32 @@
             background-color: #00aaff;
             transform: scale(1.05);
         }
+
+        /* New styles for the features section */
+        .features {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .features h2 {
+            font-size: 2em;
+            margin-bottom: 1em;
+            color: #82d8d8; /* A vibrant color */
+            text-shadow: 0 0 8px rgba(130, 216, 216, 0.5);
+        }
+        .features p {
+            font-size: 1.1em;
+            text-align: left;
+            color: #d0d0d0;
+        }
+         .features p:not(:last-child) {
+            margin-bottom: 1.5em;
+        }
     </style>
 </head>
 <body>
@@ -91,6 +113,13 @@
         <h1>Aurora Vibe Free Music</h1>
         <p>Бесплатная музыка, режим радио, поиск треков и интерактивный бот — все это ждет тебя в нашем Telegram-канале!</p>
         <a href="https://t.me/coolmagDJ" class="cta-button" target="_blank" rel="noopener noreferrer">Присоединиться к каналу</a>
+    </div>
+
+    <div class="features">
+        <h2>Почему Aurora Vibe — ваш лучший гид в мире музыки?</h2>
+        <p>Наш <strong>интерактивный радио бот</strong> предлагает больше, чем просто музыку. Включите <strong>радио в телеграм</strong> и наслаждайтесь бесконечным потоком треков в ваших любимых жанрах: от расслабляющего <strong>лоу-фай хип-хоп</strong> до динамичного <strong>синтвейв и фонк</strong>.</p>
+        <p>Ищете что-то конкретное? Наш <strong>музыкальный бот телеграм</strong> позволяет вести <strong>поиск треков по названию</strong> и мгновенно <strong>скачать музыку</strong>, которая вам понравилась. Забудьте о долгих поисках — у нас есть все.</p>
+        <p>Мы также предлагаем обширную коллекцию <strong>музыки без авторских прав</strong>, которая идеально подойдет <strong>для стримов</strong>, видео или любых ваших творческих проектов. <strong>Бесплатная музыка</strong> высокого качества всегда под рукой.</p>
     </div>
 
 </body>
