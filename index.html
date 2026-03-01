@@ -33,7 +33,7 @@
         
         #video-background {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 1; object-fit: cover; object-position: center 20%;
+            z-index: 1; object-fit: contain;
             pointer-events: none;
             filter: brightness(0.7) contrast(1.1);
         }
@@ -90,8 +90,7 @@
         
         @media (max-width: 768px) {
             h1 { font-size: 2em; } .container { padding: 30px 20px; }
-            .web-player { height: 500px; } #video-background { object-position: center center; }
-        }
+            .web-player { height: 500px; }         }
     </style>
 </head>
 <body>
