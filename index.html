@@ -11,7 +11,7 @@
     <meta name="google-site-verification" content="YSHtzMY44uBVIOIRXkdYQk_DymtXT127H3hbjZRwtLM" />
     <meta name="theme-color" content="#111111">
     
-    <!-- Open Graph (Для Telegram и соцсетей) -->
+    <!-- Open Graph -->
     <meta property="og:title" content="Aurora Vibe - Веб-плеер с живым фоном">
     <meta property="og:description" content="Нейросетевое радио, лоу-фай и музыка без ограничений.">
     <meta property="og:image" content="https://coolmag.github.io/preview.jpg">
@@ -23,7 +23,7 @@
     
     <style>
         :root {
-            --glass-bg: rgba(20, 20, 25, 0.4); /* Более прозрачный фон для стекла */
+            --glass-bg: rgba(20, 20, 25, 0.4);
             --glass-border: rgba(255, 255, 255, 0.15);
             --neon-blue: #00f3ff;
             --neon-pink: #ff00ea;
@@ -32,26 +32,14 @@
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
             font-family: 'Montserrat', sans-serif;
-            background-color: #050505;
-            color: white;
-            overflow-x: hidden;
+            background-color: #050505; color: white; overflow-x: hidden;
         }
         
-        /* 
-         * РЕШЕНИЕ ДЛЯ ВИДЕО:
-         * object-fit: cover - заполняет весь экран без черных полос.
-         * object-position: center 20% - сдвигает фокус видео чуть выше центра, 
-         * чтобы не обрезало лицо/тело девушки на широких мониторах.
-         */
         #video-background {
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100vw; height: 100vh; 
-            z-index: 1; 
-            object-fit: cover; 
-            object-position: center 20%; 
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 1; object-fit: cover; object-position: center 20%;
             pointer-events: none;
-            filter: brightness(0.65) contrast(1.1); /* Слегка затемняем, чтобы плеер выделялся */
+            filter: brightness(0.7) contrast(1.1);
         }
         
         .page-content {
@@ -60,17 +48,12 @@
             min-height: 100vh; box-sizing: border-box;
         }
         
-        /* Блок с текстом (тоже стеклянный) */
         .container {
-            background: var(--glass-bg);
-            border-radius: 20px;
+            background: var(--glass-bg); border-radius: 20px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            max-width: 600px; width: 100%;
-            padding: 40px; text-align: center;
-            margin-bottom: 30px;
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border); max-width: 600px; width: 100%;
+            padding: 40px; text-align: center; margin-bottom: 30px;
             transition: transform 0.3s ease;
         }
         
@@ -79,10 +62,8 @@
         h1 {
             font-size: 2.8em; font-weight: 900; margin: 0 0 10px 0;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-transform: uppercase; letter-spacing: 2px;
         }
         
         .container p {
@@ -91,45 +72,35 @@
         
         .cta-button {
             display: inline-flex; align-items: center; justify-content: center;
-            background: linear-gradient(45deg, #0088cc, #005580);
-            color: #ffffff; padding: 16px 35px;
-            font-size: 1.1em; font-weight: 700; text-decoration: none;
+            background: linear-gradient(45deg, #0088cc, #005580); color: #ffffff;
+            padding: 16px 35px; font-size: 1.1em; font-weight: 700; text-decoration: none;
             border-radius: 50px; transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(0, 136, 204, 0.8);
+            transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 136, 204, 0.8);
             background: linear-gradient(45deg, #00aaff, #0077b3);
         }
         
-        /* 
-         * ЭФФЕКТ LIQUID GLASS ДЛЯ ПЛЕЕРА 
-         */
         .web-player {
             width: 100%; max-width: 800px; height: 650px;
-            border-radius: 20px; 
-            border: 1px solid var(--glass-border);
+            border-radius: 20px; border: 1px solid var(--glass-border);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255,255,255,0.05);
-            background: rgba(10, 10, 15, 0.2); /* Почти прозрачная подложка */
-            backdrop-filter: blur(20px); /* Сильное размытие фона за плеером */
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.2); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         }
         
         @media (max-width: 768px) {
-            h1 { font-size: 2em; }
-            .container { padding: 30px 20px; }
-            .web-player { height: 500px; }
-            /* На мобилках показываем видео иначе */
-            #video-background { object-position: center center; }
+            h1 { font-size: 2em; } .container { padding: 30px 20px; }
+            .web-player { height: 500px; } #video-background { object-position: center center; }
         }
     </style>
 </head>
 <body>
     <video autoplay muted loop playsinline id="video-background">
-        <!-- Исправленная ссылка на видео -->
+        <!-- БЕЗ СКОБОК < > ! -->
         <source src="https://coolmag.github.io/avatar.mp4" type="video/mp4">
     </video>
     
@@ -137,13 +108,13 @@
         <div class="container">
             <h1>Aurora Vibe</h1>
             <p>Первая нейро-радиостанция в Telegram. Слушай треки, управляй эфиром и погружайся в кибер-вайб.</p>
-            <!-- Исправленная ссылка -->
+            <!-- БЕЗ СКОБОК < > ! -->
             <a href="https://t.me/coolmagDJ" class="cta-button" target="_blank" rel="noopener noreferrer">
                 🚀 Открыть в Telegram
             </a>
         </div>
         
-        <!-- Обрати внимание: добавлен атрибут allowtransparency="true" -->
+        <!-- БЕЗ СКОБОК < > ! И с параметром allowtransparency -->
         <iframe class="web-player" src="https://newbot99-production.up.railway.app/" frameborder="0" allowtransparency="true" allow="autoplay; encrypted-media"></iframe>
     </div>
 </body>
