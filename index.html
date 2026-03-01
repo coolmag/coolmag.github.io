@@ -3,108 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurora Vibe - 3D Веб-плеер</title>
-    <meta name="description" content="Слушайте музыку через веб-плеер Aurora Vibe в интерактивном 3D-окружении.">
-    <!-- Keeping our keywords and verification tag -->
-    <meta name="keywords" content="веб-плеер, 3d сайт, webgl, spline, бесплатная музыка, скачать музыку, музыкальный бот телеграм, слушать музыку онлайн, радио в телеграм, Aurora Vibe, лоу-фай, синтвейв, фонк, музыка без авторских прав">
+    <title>Aurora Vibe | AI-Powered Web Radio</title>
+    
+    <!-- SEO & Indexing -->
+    <meta name="description" content="Слушайте музыку через нейросетевого диджея Aurora Vibe в интерактивном окружении с видео-фоном.">
+    <meta name="keywords" content="видео фон, веб-плеер, бесплатная музыка, музыкальный бот телеграм, Aurora Vibe">
     <meta name="google-site-verification" content="YSHtzMY44uBVIOIRXkdYQk_DymtXT127H3hbjZRwtLM" />
+    <meta name="theme-color" content="#111111">
+    
+    <!-- Open Graph (Для Telegram и соцсетей) -->
+    <meta property="og:title" content="Aurora Vibe - Веб-плеер с живым фоном">
+    <meta property="og:description" content="Нейросетевое радио, лоу-фай и музыка без ограничений.">
+    <meta property="og:image" content="https://coolmag.github.io/preview.jpg"> 
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --glass-bg: rgba(15, 15, 20, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff00ea;
+        }
+        
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
+            margin: 0; padding: 0; width: 100%; height: 100%;
             font-family: 'Montserrat', sans-serif;
-            background-color: #111;
+            background-color: #050505;
             color: white;
+            overflow-x: hidden;
         }
-
-        #spline-background {
+        
+        #video-background {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
             z-index: 1;
-            border: none;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover; /* Это свойство покрывает весь экран без искажений */
+            pointer-events: none;
         }
-
+        
         .page-content {
-            position: relative;
-            z-index: 2;
-            padding: 40px 20px;
+            position: relative; z-index: 2; padding: 5vh 20px;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; box-sizing: border-box;
+        }
+        
+        .container {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
             text-align: center;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
         }
 
-        .container {
-            padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 15px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            max-width: 600px;
-            margin: 0 auto 40px auto;
+        .container:hover {
+            transform: translateY(-5px);
         }
         
         h1 {
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 0.5em;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            font-size: 2.8em; font-weight: 900; margin: 0 0 10px 0;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
+        
         .container p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 1.5em;
-            color: #e0e0e0;
+            font-size: 1.1em; line-height: 1.6; color: #a0a0b0; margin-bottom: 25px;
         }
+        
         .cta-button {
-            display: inline-block;
-            background-color: #0088cc;
-            color: #ffffff;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            font-weight: bold;
-            text-decoration: none;
+            display: inline-flex; align-items: center; justify-content: center;
+            background: linear-gradient(45deg, #0088cc, #005580);
+            color: #ffffff; padding: 16px 35px;
+            font-size: 1.1em; font-weight: 700; text-decoration: none;
             border-radius: 50px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        
         .cta-button:hover {
-            background-color: #00aaff;
             transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 136, 204, 0.8);
+            background: linear-gradient(45deg, #00aaff, #0077b3);
         }
-
+        
         .web-player {
-            width: 100%;
-            max-width: 800px;
-            height: 600px;
-            border-radius: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            width: 100%; max-width: 800px; height: 650px;
+            border-radius: 20px; border: 1px solid var(--glass-border);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            background: #0a0a0a;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .container { padding: 30px 20px; }
+            .web-player { height: 500px; }
         }
     </style>
 </head>
 <body>
-
-    <iframe id="spline-background" src='https://my.spline.design/abstractgradientbackground-d19b49e5c9f4874a7a13d789ac9115b1/'></iframe>
-
+    <video autoplay muted loop id="video-background">
+        <source src="avatar.mp4" type="video/mp4">
+        Ваш браузер не поддерживает тег video.
+    </video>
+    
     <div class="page-content">
-        
         <div class="container">
-            <h1>Aurora Vibe - 3D Веб-плеер</h1>
-            <p>Слушайте музыку, управляйте ботом и переходите в наш Telegram-канал.</p>
-            <a href="https://t.me/coolmagDJ" class="cta-button" target="_blank" rel="noopener noreferrer">Перейти в Telegram</a>
+            <h1>Aurora Vibe</h1>
+            <p>Первая нейро-радиостанция в Telegram. Слушай треки, управляй эфиром и погружайся в кибер-вайб.</p>
+            <a href="https://t.me/coolmagDJ" class="cta-button" target="_blank" rel="noopener noreferrer">
+                🚀 Открыть в Telegram
+            </a>
         </div>
-
-        <iframe class="web-player" src="https://newbot99-production.up.railway.app" frameborder="0"></iframe>
-
+        
+        <iframe class="web-player" src="https://newbot99-production.up.railway.app/" frameborder="0" allow="autoplay; encrypted-media"></iframe>
     </div>
-
 </body>
 </html>
