@@ -3,44 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurora Vibe Free Music - Ваш портал в мир бесплатной музыки</title>
-    <meta name="description" content="Присоединяйтесь к Telegram-каналу Aurora Vibe Free Music. Наслаждайтесь бесплатной музыкой, радио, поиском треков и общением с интерактивным ботом.">
-    <meta name="keywords" content="бесплатная музыка, скачать музыку, музыкальный бот телеграм, слушать музыку онлайн, радио в телеграм, поиск треков по названию, Aurora Vibe музыкальный бот, лоу-фай хип-хоп слушать, синтвейв и фонк музыка, музыка без авторских прав, новые треки 2026, электронная музыка транс, интерактивное радио бот, музыка для стримов, плейлист музыки в телеграм">
+    <title>Aurora Vibe - 3D Веб-плеер</title>
+    <meta name="description" content="Слушайте музыку через веб-плеер Aurora Vibe в интерактивном 3D-окружении.">
+    <!-- Keeping our keywords and verification tag -->
+    <meta name="keywords" content="веб-плеер, 3d сайт, webgl, spline, бесплатная музыка, скачать музыку, музыкальный бот телеграм, слушать музыку онлайн, радио в телеграм, Aurora Vibe, лоу-фай, синтвейв, фонк, музыка без авторских прав">
     <meta name="google-site-verification" content="YSHtzMY44uBVIOIRXkdYQk_DymtXT127H3hbjZRwtLM" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #121212;
-            color: #ffffff;
+        body, html {
             margin: 0;
-            padding: 40px 20px; /* Added padding */
-            text-align: center;
-            overflow-x: hidden; /* Allow vertical scroll, hide horizontal */
-            position: relative;
+            padding: 0;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #111;
+            color: white;
         }
-        body::before {
-            content: '';
-            position: fixed; /* Make background fixed */
+
+        #spline-background {
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(29, 22, 53, 0.8), rgba(83, 33, 112, 0.8), rgba(43, 144, 145, 0.8));
-            animation: gradient-animation 15s ease infinite;
-            background-size: 400% 400%;
-            z-index: -1; /* Put background behind content */
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            border: none;
         }
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .container {
+
+        .page-content {
             position: relative;
             z-index: 2;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .container {
             padding: 40px 20px;
             background: rgba(0, 0, 0, 0.6);
             border-radius: 15px;
@@ -49,15 +48,16 @@
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.18);
             max-width: 600px;
-            margin: 0 auto 40px auto; /* Center and add bottom margin */
+            margin: 0 auto 40px auto;
         }
+        
         h1 {
             font-size: 2.5em;
             font-weight: 700;
             margin-bottom: 0.5em;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
-        p {
+        .container p {
             font-size: 1.2em;
             line-height: 1.6;
             margin-bottom: 1.5em;
@@ -65,7 +65,7 @@
         }
         .cta-button {
             display: inline-block;
-            background-color: #0088cc; /* Telegram blue */
+            background-color: #0088cc;
             color: #ffffff;
             padding: 15px 30px;
             font-size: 1.2em;
@@ -80,46 +80,30 @@
             transform: scale(1.05);
         }
 
-        /* New styles for the features section */
-        .features {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.7);
+        .web-player {
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
             border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-        .features h2 {
-            font-size: 2em;
-            margin-bottom: 1em;
-            color: #82d8d8; /* A vibrant color */
-            text-shadow: 0 0 8px rgba(130, 216, 216, 0.5);
-        }
-        .features p {
-            font-size: 1.1em;
-            text-align: left;
-            color: #d0d0d0;
-        }
-         .features p:not(:last-child) {
-            margin-bottom: 1.5em;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Aurora Vibe Free Music</h1>
-        <p>Бесплатная музыка, режим радио, поиск треков и интерактивный бот — все это ждет тебя в нашем Telegram-канале!</p>
-        <a href="https://t.me/coolmagDJ" class="cta-button" target="_blank" rel="noopener noreferrer">Присоединиться к каналу</a>
-    </div>
+    <iframe id="spline-background" src='https://my.spline.design/abstractgradientbackground-d19b49e5c9f4874a7a13d789ac9115b1/'></iframe>
 
-    <div class="features">
-        <h2>Почему Aurora Vibe — ваш лучший гид в мире музыки?</h2>
-        <p>Наш <strong>интерактивный радио бот</strong> предлагает больше, чем просто музыку. Включите <strong>радио в телеграм</strong> и наслаждайтесь бесконечным потоком треков в ваших любимых жанрах: от расслабляющего <strong>лоу-фай хип-хоп</strong> до динамичного <strong>синтвейв и фонк</strong>.</p>
-        <p>Ищете что-то конкретное? Наш <strong>музыкальный бот телеграм</strong> позволяет вести <strong>поиск треков по названию</strong> и мгновенно <strong>скачать музыку</strong>, которая вам понравилась. Забудьте о долгих поисках — у нас есть все.</p>
-        <p>Мы также предлагаем обширную коллекцию <strong>музыки без авторских прав</strong>, которая идеально подойдет <strong>для стримов</strong>, видео или любых ваших творческих проектов. <strong>Бесплатная музыка</strong> высокого качества всегда под рукой.</p>
+    <div class="page-content">
+        
+        <div class="container">
+            <h1>Aurora Vibe - 3D Веб-плеер</h1>
+            <p>Слушайте музыку, управляйте ботом и переходите в наш Telegram-канал.</p>
+            <a href="https://t.me/coolmagDJ" class="cta-button" target="_blank" rel="noopener noreferrer">Перейти в Telegram</a>
+        </div>
+
+        <iframe class="web-player" src="https://newbot99-production.up.railway.app" frameborder="0"></iframe>
+
     </div>
 
 </body>
