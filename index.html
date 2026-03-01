@@ -31,11 +31,33 @@
             background-color: #050505; color: white; overflow-x: hidden;
         }
         
+        /* 
+         * 🔥 НОВЫЙ СТИЛЬ ДЛЯ ВИДЕО 🔥 
+         * 1. cover - растягивает на весь экран без черных полос.
+         * 2. scale(1.1) - немного увеличиваем, чтобы скрыть края после размытия.
+         * 3. blur(15px) - художественное размытие, делающее фон абстрактным неоном!
+         */
         #video-background {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 1; object-fit: contain;
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100vw; height: 100vh; 
+            z-index: 1; 
+            object-fit: cover; 
+            object-position: center;
             pointer-events: none;
-            filter: brightness(0.7) contrast(1.1);
+            filter: blur(15px) brightness(0.6) contrast(1.2);
+            transform: scale(1.1); /* Убирает белые края от размытия */
+        }
+
+        /* 
+         * Добавим темный градиент поверх видео, чтобы текст читался идеально 
+         */
+        .vignette-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 1;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
+            pointer-events: none;
         }
         
         .page-content {
@@ -58,8 +80,10 @@
         h1 {
             font-size: 2.8em; font-weight: 900; margin: 0 0 10px 0;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-transform: uppercase; letter-spacing: 2px;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         
         .container p {
@@ -80,37 +104,43 @@
             background: linear-gradient(45deg, #00aaff, #0077b3);
         }
         
+        /* 
+         * Плеер оставляем слегка стеклянным, чтобы он выделялся 
+         */
         .web-player {
             width: 100%; max-width: 800px; height: 650px;
             border-radius: 20px; border: 1px solid var(--glass-border);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255,255,255,0.05);
-            background: rgba(10, 10, 15, 0.2); 
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255,255,255,0.05);
+            background: rgba(10, 10, 15, 0.3); 
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
         
         @media (max-width: 768px) {
             h1 { font-size: 2em; } .container { padding: 30px 20px; }
-            .web-player { height: 500px; }         }
+            .web-player { height: 500px; }
+        }
     </style>
 </head>
 <body>
     <video autoplay muted loop playsinline id="video-background">
-        <!-- Ссылка чистая, без < > -->
+        <!-- Твоя ссылка на квадратное видео -->
         <source src="https://coolmag.github.io/avatar.mp4" type="video/mp4">
     </video>
+    
+    <!-- Затемнение по краям для красоты -->
+    <div class="vignette-overlay"></div>
     
     <div class="page-content">
         <div class="container">
             <h1>Aurora Vibe</h1>
             <p>Первая нейро-радиостанция в Telegram. Слушай треки, управляй эфиром и погружайся в кибер-вайб.</p>
-            <!-- Ссылка чистая, без < > и \ -->
             <a href="https://t.me/coolmagDJ" class="cta-button" target="_blank" rel="noopener noreferrer">
                 🚀 Открыть в Telegram
             </a>
         </div>
         
-        <!-- Добавлено ?v=2 для сброса кэша! -->
-        <iframe class="web-player" src="https://newbot99-production.up.railway.app/?v=2" frameborder="0" allowtransparency="true" allow="autoplay; encrypted-media"></iframe>
+        <!-- Вызываем Railway Плеер -->
+        <iframe class="web-player" src="https://newbot99-production.up.railway.app/?v=3" frameborder="0" allowtransparency="true" allow="autoplay; encrypted-media"></iframe>
     </div>
 </body>
 </html>
