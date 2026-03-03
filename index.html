@@ -8,119 +8,24 @@
     <meta name="description" content="Погрузитесь в мир Aurora Vibe — уникального AI-радио с живым видео-фоном. Слушайте бесконечный поток музыки, подобранной нейросетью, и управляйте эфиром прямо из Telegram.">
     <meta name="keywords" content="видео фон, веб-плеер, бесплатная музыка, музыкальный бот телеграм, Aurora Vibe, AI радио, нейросетевое радио, интерактивное радио, музыка 24/7">
     <meta name="theme-color" content="#111111">
+    <link rel="manifest" href="manifest.json">
     <meta name="google-site-verification" content="KxUsWO4ujaUeOVVdrcQMkMx_2W-9zdtBDzbXW6faUN8" />
     
     <meta property="og:title" content="Aurora Vibe - Веб-плеер с живым фоном">
     <meta property="og:description" content="Погрузитесь в мир Aurora Vibe — уникального AI-радио с живым видео-фоном и бесконечным потоком музыки.">
     <meta property="og:image" content="https://coolmag.github.io/preview.jpg">
     
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aurora Vibe - Веб-плеер с живым фоном">
+    <meta name="twitter:description" content="Погрузитесь в мир Aurora Vibe — уникального AI-радио с живым видео-фоном и бесконечным потоком музыки.">
+    <meta name="twitter:image" content="https://coolmag.github.io/preview.jpg">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <style>
-        :root {
-            --glass-bg: rgba(20, 20, 25, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.15);
-            --neon-blue: #00f3ff;
-            --neon-pink: #ff00ea;
-        }
-        
-        body, html {
-            margin: 0; padding: 0; width: 100%; height: 100%;
-            font-family: 'Montserrat', sans-serif;
-            background-color: #050505; color: white; overflow-x: hidden;
-        }
-        
-        /* 
-         * 🔥 НОВЫЙ СТИЛЬ ДЛЯ ВИДЕО 🔥 
-         * 1. cover - растягивает на весь экран без черных полос.
-         * 2. scale(1.1) - немного увеличиваем, чтобы скрыть края после размытия.
-         * 3. blur(15px) - художественное размытие, делающее фон абстрактным неоном!
-         */
-        #video-background {
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100vw; height: 100vh; 
-            z-index: 1; 
-            object-fit: cover; 
-            object-position: center;
-            pointer-events: none;
-            filter: blur(15px) brightness(0.6) contrast(1.2);
-            transform: scale(1.1); /* Убирает белые края от размытия */
-        }
-
-        /* 
-         * Добавим темный градиент поверх видео, чтобы текст читался идеально 
-         */
-        .vignette-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 1;
-            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
-            pointer-events: none;
-        }
-        
-        .page-content {
-            position: relative; z-index: 2; padding: 5vh 20px;
-            display: flex; flex-direction: column; align-items: center;
-            min-height: 100vh; box-sizing: border-box;
-        }
-        
-        .container {
-            background: var(--glass-bg); border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border); max-width: 600px; width: 100%;
-            padding: 40px; text-align: center; margin-bottom: 30px;
-            transition: transform 0.3s ease;
-        }
-        
-        .container:hover { transform: translateY(-5px); }
-        
-        h1 {
-            font-size: 2.8em; font-weight: 900; margin: 0 0 10px 0;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .container p {
-            font-size: 1.1em; line-height: 1.6; color: #e0e0e0; margin-bottom: 25px;
-        }
-        
-        .cta-button {
-            display: inline-flex; align-items: center; justify-content: center;
-            background: linear-gradient(45deg, #0088cc, #005580); color: #ffffff;
-            padding: 16px 35px; font-size: 1.1em; font-weight: 700; text-decoration: none;
-            border-radius: 50px; transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .cta-button:hover {
-            transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 136, 204, 0.8);
-            background: linear-gradient(45deg, #00aaff, #0077b3);
-        }
-        
-        /* 
-         * Плеер оставляем слегка стеклянным, чтобы он выделялся 
-         */
-        .web-player {
-            width: 100%; max-width: 800px; height: 650px;
-            border-radius: 20px; border: 1px solid var(--glass-border);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255,255,255,0.05);
-            background: rgba(10, 10, 15, 0.3); 
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-        }
-        
-        @media (max-width: 768px) {
-            h1 { font-size: 2em; } .container { padding: 30px 20px; }
-            .web-player { height: 500px; }
-        }
-    </style>
+    <style>:root{--glass-bg:rgba(20,20,25,0.4);--glass-border:rgba(255,255,255,0.15);--neon-blue:#00f3ff;--neon-pink:#ff00ea}body,html{margin:0;padding:0;width:100%;height:100%;font-family:'Montserrat',sans-serif;background-color:#050505;color:white;overflow-x:hidden}#video-background{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;object-fit:cover;object-position:center;pointer-events:none;filter:blur(15px) brightness(0.6) contrast(1.2);transform:scale(1.1)}.vignette-overlay{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;background:radial-gradient(circle at center,transparent 0%,rgba(0,0,0,0.8) 100%);pointer-events:none}.page-content{position:relative;z-index:2;padding:5vh 20px;display:flex;flex-direction:column;align-items:center;min-height:100vh;box-sizing:border-box}.container{background:var(--glass-bg);border-radius:20px;box-shadow:0 8px 32px 0 rgba(0,0,0,0.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--glass-border);max-width:600px;width:100%;padding:40px;text-align:center;margin-bottom:30px;transition:transform .3s ease}.container:hover{transform:translateY(-5px)}h1{font-size:2.8em;font-weight:900;margin:0 0 10px 0;background:linear-gradient(90deg,var(--neon-blue),var(--neon-pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-transform:uppercase;letter-spacing:2px}.container p{font-size:1.1em;line-height:1.6;color:#e0e0e0;margin-bottom:25px}.cta-button{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(45deg,#0088cc,#005580);color:#fff;padding:16px 35px;font-size:1.1em;font-weight:700;text-decoration:none;border-radius:50px;transition:all .3s ease;box-shadow:0 4px 15px rgba(0,136,204,.4);border:1px solid rgba(255,255,255,.1)}.cta-button:hover{transform:scale(1.05);box-shadow:0 0 25px rgba(0,136,204,.8);background:linear-gradient(45deg,#00aaff,#0077b3)}.web-player{width:100%;max-width:800px;height:650px;border-radius:20px;border:1px solid var(--glass-border);box-shadow:0 15px 40px rgba(0,0,0,.8),inset 0 0 20px rgba(255,255,255,.05);background:rgba(10,10,15,.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}@media (max-width:768px){h1{font-size:2em}.container{padding:30px 20px}.web-player{height:500px}}</style>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -181,5 +86,17 @@
         <!-- Вызываем Railway Плеер -->
         <iframe class="web-player" src="https://newbot99-production.up.railway.app/?v=3" frameborder="0" allowtransparency="true" allow="autoplay; encrypted-media"></iframe>
     </div>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js').then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
 </body>
 </html>

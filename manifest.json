@@ -1,0 +1,21 @@
+{
+  "name": "Aurora Vibe | AI-Powered Web Radio",
+  "short_name": "Aurora Vibe",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#111111",
+  "description": "Погрузитесь в мир Aurora Vibe — уникального AI-радио с живым видео-фоном.",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
