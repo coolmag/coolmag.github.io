@@ -3,7 +3,6 @@ const urlsToCache = [
   '/',
   '/index.html',
   '/yandex_0ead59de0cb476b1.html',
-  '/awesome-seo-tools-cover.webp',
   '/manifest.json'
 ];
 
