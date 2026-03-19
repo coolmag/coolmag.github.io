@@ -5,21 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aurora Vibe | AI-Powered Web Radio</title>
     
-    <meta name="description" content="Погрузитесь в мир Aurora Vibe — уникального AI-радио с живым видео-фоном. Слушайте бесконечный поток музыки, подобранной нейросетью, и управляйте эфиром прямо из Telegram.">
-    <meta name="keywords" content="видео фон, веб-плеер, бесплатная музыка, музыкальный бот телеграм, Aurora Vibe, AI радио, нейросетевое радио, интерактивное радио, музыка 24/7">
+    <meta name="description" content="Погрузитесь в мир Aurora Vibe — уникального AI-радио с живым видео-фоном.">
     <meta name="theme-color" content="#111111">
-    <link rel="manifest" href="manifest.json">
-    <meta name="google-site-verification" content="KxUsWO4ujaUeOVVdrcQMkMx_2W-9zdtBDzbXW6faUN8" />
-    
-    <meta property="og:title" content="Aurora Vibe - Веб-плеер с живым фоном">
-    <meta property="og:description" content="Погрузитесь в мир Aurora Vibe — уникального AI-радио с живым видео-фоном и бесконечным потоком музыки.">
-    <meta property="og:image" content="https://coolmag.github.io/preview.jpg">
-    
-    <!-- Twitter Card data -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Aurora Vibe - Веб-плеер с живым фоном">
-    <meta name="twitter:description" content="Погрузитесь в мир Aurora Vibe — уникального AI-радио с живым видео-фоном и бесконечным потоком музыки.">
-    <meta name="twitter:image" content="https://coolmag.github.io/preview.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,8 +14,8 @@
     
     <style>
         :root {
-            --glass-bg: rgba(20,20,25,0.4);
-            --glass-border: rgba(255,255,255,0.15);
+            --glass-bg: rgba(20, 20, 25, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.15);
             --neon-blue: #00f3ff;
             --neon-pink: #ff00ea;
         }
@@ -48,116 +35,97 @@
             z-index: 1; background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
             pointer-events: none;
         }
+        
+        /* Главный контейнер страницы */
         .page-content {
-            position: relative; z-index: 2; padding: 5vh 20px;
+            position: relative; z-index: 2; padding: 2vh 15px;
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; box-sizing: border-box;
+            max-width: 800px; margin: 0 auto;
         }
-        .container {
+
+        /* Верхняя шапка (теперь компактная) */
+        .header-container {
             background: var(--glass-bg); border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.5);
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
-            max-width: 600px; width: 100%; padding: 40px; text-align: center;
-            margin-bottom: 30px; transition: transform .3s ease;
+            width: 100%; padding: 15px 20px; text-align: center;
+            margin-bottom: 15px; box-sizing: border-box;
         }
-        .container:hover { transform: translateY(-5px); }
         h1 {
-            font-size: 2.8em; font-weight: 900; margin: 0 0 10px 0;
+            font-size: 2em; font-weight: 900; margin: 0 0 5px 0;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             text-transform: uppercase; letter-spacing: 2px;
         }
-        .container p {
-            font-size: 1.1em; line-height: 1.6; color: #e0e0e0; margin-bottom: 25px;
+        .header-container p {
+            font-size: 0.9em; line-height: 1.4; color: #e0e0e0; margin: 0;
         }
-        
-        /* --- Стили для группы кнопок --- */
-        .buttons-group {
-            display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;
+
+        /* Плеер (занимает основное место) */
+        .web-player {
+            width: 100%; flex-grow: 1; min-height: 450px; border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,.8), inset 0 0 20px rgba(255,255,255,.05);
+            background: rgba(10,10,15,.3); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); margin-bottom: 15px;
         }
-        
+
+        /* Нижняя панель с кнопками в ряд */
+        .bottom-bar {
+            background: var(--glass-bg); border-radius: 20px;
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            width: 100%; padding: 15px; box-sizing: border-box;
+            display: flex; flex-direction: row; justify-content: center; align-items: center;
+            gap: 15px;
+        }
+
+        /* Кнопки */
         .cta-button {
             display: inline-flex; align-items: center; justify-content: center;
             background: linear-gradient(45deg, #0088cc, #005580);
-            color: #fff; padding: 16px 35px; font-size: 1.1em; font-weight: 700;
-            text-decoration: none; border-radius: 50px; transition: all .3s ease;
+            color: #fff; padding: 12px 20px; font-size: 1em; font-weight: 700;
+            text-decoration: none; border-radius: 15px; transition: all .3s ease;
             box-shadow: 0 4px 15px rgba(0,136,204,.4); border: 1px solid rgba(255,255,255,.1);
+            flex: 1; /* Растягивает кнопки равномерно */
+            white-space: nowrap;
         }
         .cta-button:hover {
-            transform: scale(1.05); box-shadow: 0 0 25px rgba(0,136,204,.8);
-            background: linear-gradient(45deg, #00aaff, #0077b3);
+            transform: scale(1.02); background: linear-gradient(45deg, #00aaff, #0077b3);
         }
-        
-        /* --- Стили для кнопки доната --- */
         .donate-button {
             background: linear-gradient(45deg, #c20090, #7a005a);
             box-shadow: 0 4px 15px rgba(255, 0, 234, 0.4);
         }
         .donate-button:hover {
-            box-shadow: 0 0 25px rgba(255, 0, 234, 0.8);
             background: linear-gradient(45deg, #ff00ea, #b300a4);
         }
 
-        .web-player {
-            width: 100%; max-width: 800px; height: 650px; border-radius: 20px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 15px 40px rgba(0,0,0,.8), inset 0 0 20px rgba(255,255,255,.05);
-            background: rgba(10,10,15,.3); backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+        /* Мини QR-код для ПК */
+        .qr-mini {
+            width: 48px; height: 48px; border-radius: 10px;
+            border: 2px solid var(--neon-pink); object-fit: cover;
+            box-shadow: 0 0 10px rgba(255, 0, 234, 0.3); transition: transform 0.3s;
         }
-        
-        /* --- Стили для виджета алертов --- */
+        .qr-mini:hover { transform: scale(1.5); }
+
+        /* Виджет алертов */
         .donation-alert-widget {
-            position: fixed; top: 20px; right: 20px; width: 400px; height: 300px;
+            position: fixed; top: 10px; right: 10px; width: 350px; height: 300px;
             border: none; z-index: 9999; pointer-events: none;
         }
 
-        @media (max-width:768px){
-            h1 { font-size: 2em; }
-            .container { padding: 30px 20px; }
-            .web-player { height: 500px; }
-            .donation-alert-widget { top: 10px; right: 10px; width: 100%; }
+        /* Адаптация под телефоны */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.5em; }
+            .header-container { padding: 10px 15px; }
+            .bottom-bar { padding: 10px; gap: 10px; }
+            .cta-button { font-size: 0.85em; padding: 10px 5px; }
+            .qr-mini { display: none; } /* Прячем QR на телефонах */
+            .donation-alert-widget { width: 100%; top: 5px; right: 0; }
         }
     </style>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Aurora Vibe - Web Player",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "Web",
-      "description": "Погрузитесь в мир Aurora Vibe — уникального AI-радио с живым видео-фоном. Слушайте бесконечный поток музыки, подобранной нейросетью, и управляйте эфиром прямо из Telegram.",
-      "url": "https://coolmag.github.io/",
-      "screenshot": "https://coolmag.github.io/preview.jpg",
-      "author": {
-        "@type": "Organization",
-        "name": "Aurora Vibe"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Aurora Vibe"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "RUB"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "89"
-      },
-      "video": {
-        "@type": "VideoObject",
-        "name": "Демонстрация интерфейса Aurora Vibe",
-        "description": "Видео-фон с демонстрацией аватара проекта Aurora Vibe.",
-        "thumbnailUrl": "https://coolmag.github.io/preview.jpg",
-        "contentUrl": "https://coolmag.github.io/avatar.mp4",
-        "uploadDate": "2026-03-01"
-      }
-    }
-    </script>
 </head>
 <body>
     <video autoplay muted loop playsinline id="video-background">
@@ -170,42 +138,27 @@
     <iframe class="donation-alert-widget" src="https://widget.donatepay.ru/alert-box/widget/11cbd6bc2d99c42feb866fa80432f47569a4c632d42ec8b10fb2bda4b694f8f4" allowtransparency="true"></iframe>
 
     <div class="page-content">
-        <div class="container">
+        
+        <!-- Шапка (сверху) -->
+        <div class="header-container">
             <h1>Aurora Vibe</h1>
-            <p>Первая нейро-радиостанция в Telegram. Слушай треки, управляй эфиром и погружайся в кибер-вайб.</p>
-            
-            <!-- Группа кнопок -->
-            <div class="buttons-group">
-                <a href="https://t.me/coolmagDJ" class="cta-button" target="_blank" rel="noopener noreferrer">
-                    🚀 Открыть в Telegram
-                </a>
-                <a href="https://donatepay.ru/don/1480259" class="cta-button donate-button" target="_blank" rel="noopener noreferrer">
-                    💖 Поддержать
-                </a>
-            </div>
-
-            <!-- Блок с QR-кодом -->
-            <div class="qr-container" style="margin-top: 25px;">
-                <p style="font-size: 0.9em; color: #aaa; margin-bottom: 10px;">Или отсканируйте для быстрого доната:</p>
-                <!-- Убедитесь, что картинка называется donate-qr.png и лежит в той же папке -->
-                <img src="donate-qr.png" alt="QR-код для доната" style="width: 150px; border-radius: 15px; border: 2px solid var(--neon-pink); box-shadow: 0 0 15px rgba(255, 0, 234, 0.3);">
-            </div>
+            <p>Первая нейро-радиостанция в Telegram. Слушай треки и управляй эфиром.</p>
         </div>
         
-        <!-- Вызываем Railway Плеер -->
+        <!-- Плеер (по центру) -->
         <iframe class="web-player" src="https://newbot99-production.up.railway.app/?v=3" frameborder="0" allowtransparency="true" allow="autoplay; encrypted-media"></iframe>
-    </div>
 
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js').then(registration => {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, err => {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
-    </script>
+        <!-- Панель кнопок (снизу) -->
+        <div class="bottom-bar">
+            <a href="https://t.me/coolmagDJ" class="cta-button" target="_blank" rel="noopener noreferrer">
+                🚀 Telegram
+            </a>
+            <a href="https://donatepay.ru/don/1480259" class="cta-button donate-button" target="_blank" rel="noopener noreferrer">
+                💖 Поддержать
+            </a>
+            <img src="donate-qr.png" alt="QR-код" class="qr-mini" title="Отсканируй для доната">
+        </div>
+
+    </div>
 </body>
 </html>
